@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Subs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Moderator</th>
+      <th colspan="40"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @subs.each do |sub| %>
+      <tr>
+        <td><%= link_to  sub.title, sub_url(sub.id) %></td>
+        <td><%= sub.description %></td>
+        <td><%= sub.moderator.username %></td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Sub', new_user_sub_url(current_user.id) %>

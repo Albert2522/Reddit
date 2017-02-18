@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= @post.title %> by <%= @post.author.username %></h1>
+
+<div class="small-border"
+    <b>Content:</b>
+
+    <pre><%= @post.content %></pre>
+    <br><br>
+  </div>
+
+<% if current_user.id == @post.author.id %>
+  <%= link_to 'Edit', edit_sub_post_url(@post.sub_id, @post.id) %>
+<% end %>
+<%= link_to 'Back', sub_url(id: params[:sub_id]) %>

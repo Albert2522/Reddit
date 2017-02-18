@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @sub.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @sub.description %>
+</p>
+
+<p>
+  <strong>Moderator:</strong>
+  <%= @sub.moderator_id %>
+</p>
+
+<ul>
+<% @sub.posts.each do |post| %>
+  <li> <%= link_to post.title, sub_post_url(post.sub_id, post.id) %></li>
+<% end %>
+</ul>
+<%= link_to 'Create post', new_sub_post_url(@sub.id) %><br><br>
+<%= link_to 'Edit', edit_user_sub_url(@sub.moderator_id, @sub.id) %> |
+<%= link_to 'Back', subs_path %>
+<td><%= link_to 'Destroy', user_sub_url(@sub.moderator_id, @sub.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>

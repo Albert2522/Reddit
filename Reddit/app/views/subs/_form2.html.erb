@@ -1,0 +1,11 @@
+<% action_url = @sub.id.nil? ? user_subs_url : user_sub_url(@sub.id) %>
+<% method_1 = @sub.id.nil? ? "post" : "put" %>
+
+<form  action = "<%= action_url %>"  method= "<%= method_1 %>" >
+  <%= auth_token %>
+  <label>Title</label>
+  <input type="text" name="sub[title]" value= "<%= @sub.id.nil? ? "" : @sub.title%>"><br>
+  <label>Description</label>
+  <input type="text" name="sub[description]" value= "<%= @sub.id.nil? ? "" : @sub.description %>"><br>
+  <input type="submit"  value=" <%= @sub.id.nil? ? "Create Sub" : "Edit sub" %>">
+</form>

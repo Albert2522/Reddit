@@ -1,0 +1,20 @@
+<% action_url = @post.id.nil? ? sub_posts_url(sub_id: params[:sub_id]) : sub_post_url(@post.sub_id, @post.id) %>
+<% method_1 = @post.id.nil? ? "post" : "put" %>
+
+<form  action = "<%= action_url %>"  method= "post" >
+  <% unless @post.id.nil? %>
+  <%= "<input type=\"hidden\" name=\"_method\" value=\"put\">".html_safe %>
+  <% end %>
+  <%= auth_token %>
+  <label>Title</label>
+  <input type="text" name="post[title]" value= "<%= @post.id.nil? ? "" : @post.title%>"><br>
+  <label>Url</label>
+  <input type="text" name="post[url]" value= "<%= @post.id.nil? ? "" : @post.url %>"><br>
+  <label>Content</label>
+  <input type="text" name="post[content]" value= "<%= @post.id.nil? ? "" : @post.content %>"><br>
+  <% Sub.all.each do |sub| %>
+    <input type="checkbox" name="post[sub_id][]" value="<%= sub.id %>"
+    <%= "checked" unless @post.id.nil? %> ><%= sub.title %><br>
+  <% end %>
+  <input type="submit"  value=" <%= @post.id.nil? ? "Create post" : "Edit post" %>">
+</form>
